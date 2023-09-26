@@ -1,0 +1,75 @@
+<div class="sidebar-content js-simplebar">
+  <%- include('../logo/logo.ejs') %>
+
+  <ul class="sidebar-nav">
+    <li class="sidebar-item active">
+      <a class="sidebar-link" href="/">
+        <i class="align-middle" data-feather="home"></i> <span class="align-middle">Dashboard</span>
+      </a>
+    </li>
+
+    <li class="sidebar-item">
+      <a data-bs-target="#home" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="layout"></i> <span class="align-middle">Pages</span>
+      </a>
+      <ul id="home" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="pages-profile.html">Profile</a></li>
+      </ul>
+    </li>
+
+    <li class="sidebar-item">
+      <a data-bs-target="#auth" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="users"></i> <span class="align-middle">Auth</span>
+
+      </a>
+      <ul id="auth" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
+      </ul>
+    </li>
+
+    <li class="sidebar-item">
+      <a data-bs-target="#product" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="image"></i> <span class="align-middle">Products</span>
+      </a>
+      <ul id="product" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="/apps/product/list">Manage products</a></li>
+      </ul>
+      <ul id="product" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="/product/submit/add-product">Add products</a></li>
+      </ul>
+
+    </li>
+
+    <li class="sidebar-item">
+      <a data-bs-target="#shop" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="shopping-bag"></i> <span class="align-middle">Shops</span>
+      </a>
+      <ul id="shop" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="pages-sign-in.html">Sign In</a></li>
+      </ul>
+    </li>
+
+    <li class="sidebar-item">
+      <a data-bs-target="#categories" data-bs-toggle="collapse" class="sidebar-link collapsed">
+        <i class="align-middle" data-feather="paperclip"></i> <span class="align-middle">Categories</span>
+      </a>
+      <ul id="categories" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="/category">Category</a></li>
+      </ul>
+      <ul id="categories" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="/category/sub-category">Sub Category</a></li>
+      </ul>
+      <ul id="categories" class="sidebar-dropdown list-unstyled collapse " data-bs-parent="#sidebar">
+        <li class="sidebar-item"><a class="sidebar-link" href="/category/sub-category-two">Two Sub Category</a></li>
+      </ul>
+
+    </li>
+
+
+    <li class="sidebar-item ">
+      <a class="sidebar-link" href="/user/setting">
+        <i class="align-middle" data-feather="settings"></i> <span class="align-middle">Settings</span>
+      </a>
+    </li>
+
+</div>

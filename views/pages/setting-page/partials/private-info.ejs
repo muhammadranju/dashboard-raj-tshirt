@@ -1,0 +1,57 @@
+  <div class="card">
+    <div class="card-header">
+      <h5 class="card-title mb-0">Private info</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="inputFirstName" class="form-label">First name</label>
+          <input type="text" class="form-control" id="firstName" value="<%= userAddress.firstName? userAddress.firstName:""%>" name="firstName" placeholder="First name">
+        </div>
+        <div class="mb-3 col-md-6">
+          <label for="inputLastName" class="form-label">Last name</label>
+          <input type="text" class="form-control" id="lastName" value="<%= userAddress.lastName?userAddress.lastName:"" %>" name="lastName" placeholder="Last name">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label for="inputEmail4" class="form-label">Email</label>
+          <input type="email" class="form-control" id="inputEmail4" value="<%= user.email%>" disabled placeholder="Email">
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputFirstName" class="form-label">Status</label>
+          <input type="text" disabled class="form-control" value="<%= user.status.toLowerCase()%>">
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputLastName" class="form-label">Last name</label>
+          <input type="text" disabled class="form-control" value="<%= user.types.toLowerCase()%>">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="inputAddress" class="form-label">Address</label>
+        <input type="text" class="form-control" id="address" value="<%= userAddress.address?userAddress.address:"" %>" name="address" placeholder="1234 Main St">
+      </div>
+      <div class="mb-3">
+        <label for="inputAddress2" class="form-label">Address 2</label>
+        <input type="text" class="form-control" id="address2" value="<%= userAddress.address2?userAddress.address2:"" %>" name="address2" placeholder="Apartment, studio, or floor">
+      </div>
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="inputCity" class="form-label">City</label>
+          <input type="text" class="form-control" id="city" value="<%= userAddress.city?userAddress.city:"" %>" name="city" placeholder="Enter your City">
+        </div>
+        <div class="mb-3 col-md-4">
+          <label for="inputState" class="form-label">State</label>
+          <input type="text" class="form-control" id="state" value="<%= userAddress.state?userAddress.state:"" %>" name="state" placeholder="Enter your State">
+        </div>
+        <div class="mb-3 col-md-2">
+          <label for="inputZip" class="form-label">Zip</label>
+          <input type="text" class="form-control" id="zip" value="<%= userAddress.zip?userAddress.zip:"" %>" name="zip">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Save changes</button>
+      </form>
+
+    </div>
+  </div>

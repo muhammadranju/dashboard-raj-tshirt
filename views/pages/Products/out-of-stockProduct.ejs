@@ -1,0 +1,21 @@
+ <%- include('./partials/table-thead.ejs') %>
+ <tbody>
+   <% for(let p of productsSTOCKOUT){ %>
+   <tr>
+     <td><img class="rounded" src="../../../img/avatars/avatar-2.jpg" alt="Placeholder" width="40"> </td>
+     <td class="col-lg-2"><%=p.title_name%></td>
+     <td><%=p.product_sellerSKU%></td>
+     <td><%=p.color_name%> </td>
+     <td><%=p.product_price%>TK</td>
+     <td><del><%=p.special_price%></del>Tk</td>
+     <td><%=p.product_quantity%></td>
+     <td><span class="badge bg-info">Out of Stock</span></td>
+     <td><%=p.date%> / <%=p.time%></td>
+     <td>
+       <%- include('./partials/buttons.ejs') %>
+     </td>
+   </tr>
+   <% } %>
+ </tbody>
+ </table>
+ <%- include('./partials/head-end.ejs') %>

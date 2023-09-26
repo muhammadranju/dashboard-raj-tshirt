@@ -1,0 +1,21 @@
+.title_longs {
+    /* display: -webkit-box; */
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+.image_container span {
+    top: -8px;
+    right: 8px;
+    font-size: 25px;
+    font-weight: normal;
+}
+
+.position {
+    position: absolute;
+    margin: -18px;
+    margin-top: 10px;
+}

@@ -1,0 +1,22 @@
+ <%- include('./partials/table-thead.ejs') %>
+ <tbody>
+   <% for(let p of productsAll){ %>
+   <tr>
+     <!-- <td><img src="../../../img/avatars/avatar-2.jpg" alt=""> </td> -->
+     <td><img class="rounded" src="../../../img/avatars/avatar-2.jpg" alt="Placeholder" width="40"> </td>
+     <td class="col-lg-2 "><%=p.title_name.length>=30? p.title_name.slice(0,25).concat('...'):p.title_name%></td>
+     <td><%=p.product_sellerSKU%></td>
+     <td><%=p.color_name%> </td>
+     <td><%=p.product_price%>TK</td>
+     <td><del><%=p.special_price%></del>Tk</td>
+     <td><%=p.product_quantity%></td>
+     <td id="status"><span class="btn btn-outline-primary text-dark btn-sm disabled rounded-pill font-weight-bold"><%=p.status.toLowerCase().replace(/\w/, c => c.toUpperCase())%></span></td>
+     <td><%=p.date%> / <%=p.time%></td>
+     <td>
+       <%- include('./partials/buttons.ejs') %>
+     </td>
+   </tr>
+   <% } %>
+ </tbody>
+ </table>
+ <%- include('./partials/head-end.ejs') %>

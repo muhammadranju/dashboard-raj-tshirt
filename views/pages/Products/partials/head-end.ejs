@@ -1,0 +1,54 @@
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </div>
+                 </main>
+                 <%- include('../../../partial/footer/footer.ejs') %>
+                 </div>
+                 </div>
+                 <script src="../../../../js/app.js"></script>
+                 <script src="../../../script/index-script.js"> </script>
+                 <script>
+                   const _ = (id) => document.getElementById(id)
+                   const baseUrl = window.location.pathname
+                   const cUrl = "/apps/product/"
+
+                   function URLS(URL, URL2, id, className, ) {
+                     if (URL == URL2) {
+                       _(id).className += className;
+                     }
+                   }
+                   URLS(baseUrl, cUrl, "All", " active")
+                   URLS(baseUrl, cUrl + "list", "Online", " active")
+                   URLS(baseUrl, cUrl + "pending", "Pending", " active")
+                   URLS(baseUrl, cUrl + "out-of-stock", "OutOfStock", " active")
+                   URLS(baseUrl, cUrl + "inactive", "Inactive", " active")
+                   URLS(baseUrl, cUrl + "suspended", "Suspended", " active")
+
+
+                   function yourEvent(id, event, text) {
+                     id.addEventListener(event, function(e) {
+                       window.location.href = "/apps/product/" + text
+                     })
+                   }
+
+                   function showURL() {
+                     yourEvent(_("All"), "click", "?q=all");
+                     yourEvent(_("Online"), "click", "list?q=online");
+                     yourEvent(_("Pending"), "click", "pending?q=pending");
+                     yourEvent(_("OutOfStock"), "click", "out-of-stock?q=out-of-stock");
+                     yourEvent(_("Inactive"), "click", "inactive?q=inactive");
+                     yourEvent(_("Suspended"), "click", "suspended?q=suspended");
+                   }
+                   showURL()
+
+                   //  const titleS = document.getElementById('titleS')
+                   //  titleS.innerHTML = titleS.innerHTML.slice(0, 40).concat('..')
+
+                   //  console.log(window.location.pathname)
+                 </script>
+                 </body>
+
+                 </html>

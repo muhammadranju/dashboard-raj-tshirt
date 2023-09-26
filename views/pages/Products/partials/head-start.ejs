@@ -1,0 +1,36 @@
+<%- include('../../../partial/header/header-doc-title.ejs') %>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <%- include('../../../partial/left-sidebar/left-sidebar.ejs') %>
+    </nav>
+    <div class="main">
+      <%- include('../../../partial/top-header/top-header.ejs') %>
+      <main class="content">
+        <h1 class="">Product Management</h1>
+        <div class="row">
+          <div class="col-12">
+            <a href="/product/submit/add-product"><button class="btn btn-primary mb-3">Add New Product</button></a>
+            <div class="tab ">
+              <%- include('./tabs.ejs') %>
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="row">
+                      <div class="card-body  col-md-1">
+                        <input class="form-control" type="text" name="product_price" id="product_price" placeholder="Category">
+                      </div>
+                      <div class="card-body col-md-1">
+                        <input class="form-control" type="text" name="special_price" id="special_price" placeholder="Product Id">
+                      </div>
+                      <div class="card-body col-md-1">
+                        <input class="form-control" type="text" maxlength="15" name="product_quantity" id="product_quantity" placeholder="Product Name">
+                      </div>
+                      <div class="card-body col-md-1">
+                        <input class="form-control" type="text" name="product_sellerSKU" id="product_sellerSKU" placeholder="Seller SKU ">
+                      </div>
+                      <div class="card-body col-md-1">
+                        <input class="btn btn-primary" type="button" value="Search">
+                      </div>
+                    </div>

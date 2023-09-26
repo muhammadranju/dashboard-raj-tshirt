@@ -1,0 +1,86 @@
+<%- include('../../partial/header/header-doc-title.ejs') %>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <%- include('../../partial/left-sidebar/left-sidebar.ejs') %>
+    </nav>
+    <div class="main">
+      <%- include('../../partial/top-header/top-header.ejs') %>
+
+      <main class="content">
+        <div class="container-fluid p-0">
+
+          <h1 class="h3 mb-3">Settings</h1>
+
+          <div class="row">
+            <div class="col-md-3 col-xl-2">
+
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title mb-0">Profile Settings</h5>
+                </div>
+
+                <div class="list-group list-group-flush" role="tablist">
+                  <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#account" role="tab">
+                    Account
+                  </a> <a class="list-group-item list-group-item-action " data-bs-toggle="list" href="#adduser" role="tab">
+                    Add User
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#password" role="tab">
+                    Password
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#privacy" role="tab">
+                    Privacy and safety
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                    Email notifications
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                    Web notifications
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                    Widgets
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                    Your data
+                  </a>
+                  <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#" role="tab">
+                    Delete account
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-9 col-xl-10">
+              <div class="tab-content">
+
+                <div class="tab-pane fade show active" id="account" role="tabpanel">
+                  <!-- Public info -->
+                  <%- include('./partials/public-info.ejs') %>
+                  <!-- Private info -->
+                  <%- include('./partials/private-info.ejs') %>
+
+                </div>
+
+                <!-- Current password -->
+                <%- include('./partials/current-password.ejs') %>
+
+                <%- include('./partials/add-user.ejs') %>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('../../partial/footer/footer.ejs') %>
+    </div>
+  </div>
+
+  <script src="../../../js/app.js"></script>
+
+  <script src="../../script/index-script.js"> </script>
+</body>
+
+</html>

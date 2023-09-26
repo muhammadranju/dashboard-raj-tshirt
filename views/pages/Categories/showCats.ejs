@@ -1,0 +1,159 @@
+<%- include('../../partial/header/header-doc-title.ejs') %>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <%- include('../../partial/left-sidebar/left-sidebar.ejs') %>
+    </nav>
+    <div class="main">
+      <%- include('../../partial/top-header/top-header.ejs') %>
+
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-3">Show Categories</h1>
+          <div class="row ">
+
+
+            <div class="col-12 col-xl-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Category</h5>
+                  <h6 class="card-subtitle text-muted">Show your category</h6>
+                </div>
+
+                <div class="card-body">
+                  <form id="formId">
+                    <div class="row">
+                      <div class="mb-3  col-md-12">
+                        <label class="form-label">Main Category Id <span class="text-danger">*</span></label>
+                        <select class="form-control select2" id="category_id" data-toggle="select2" name="category_id">
+                          <option hidden value="">Please select category</option>
+                          <% for(let c of category){ %>
+                          <option value="<%= c._id %>"><%= c.category %> </option>
+                          <% } %>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="card-body">
+                  <form id="">
+                    <div class="row">
+                      <div class="mb-3  col-md-12">
+                        <label class="form-label">Sub Category Id <span class="text-danger">*</span></label>
+                        <select class="form-control select2" id="subcategory_id" data-toggle="select2" name="subcategory_id">
+                          <option hidden value="">Please select category</option>
+                        </select>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('../../partial/footer/footer.ejs') %>
+    </div>
+  </div>
+
+  <script src="../../../js/app.js"></script>
+
+  <script src="../../script/index-script.js"> </script>
+  <script>
+    // function _(id) {
+    //   return document.getElementById(id)
+    // }
+    // const category_id = _('category_id').value
+
+    // const formId = document.querySelector("#formId")
+    // const newForm = document.forms["formId"];
+    // formId.addEventListener('click', async function(e) {
+    //   e.preventDefault()
+
+
+    //   const settings = {
+    //     method: "POST",
+    //     headers: {
+    //       Accept: "application/json",
+    //       "Content-Type": "application/json",
+    //     },
+
+    //     // body: JSON.stringify({
+    //     //   // your expected POST request payload goes here
+    //     //   //   sub_category_name: newForm["sub_category_name"].value,
+
+    //     // }),
+    //   };
+    //   console.log(category_id)
+    //   //   const fetchResponse = await fetch(`/category/api/test-show-sub-category?catId=${category_id}`)
+    //   //   const response = await fetchResponse.json()
+    //   //   console.log(response)
+    // })
+  </script>
+
+  <script>
+    // $('#category_id').on('change', function() {
+    //   const category_id = this.value
+    //   // console.log(category_id)
+    //   $.ajax({
+    //     url: `/category/api/test-show-sub-category?catId=${category_id}`,
+    //     type: "GET",
+    //     data: {
+    //       category_id: category_id
+    //     },
+    //     success: {
+    //       function(result) {
+    //         console.log(result.subcategory)
+    //       }
+    //     }
+
+    //   })
+    //   // console.log(first)
+    // })
+  </script>
+
+
+
+  <script>
+    const formId = document.getElementById('formId')
+    const category_id = document.querySelector('#category_id')
+    const subcategory_id = document.querySelector('#subcategory_id')
+
+    //  const selectElement = document.querySelector('.ice-cream');
+
+    // category_id.addEventListener('change', (event) => {
+    //   // const result = document.querySelector('.result');
+
+    //   console.log("Hello")
+    //   // result.textContent = `You like ${event.target.value}`;
+    // });
+    category_id.onchange = async function(e) {
+      const catId = e.target.value
+      // console.log(catId)
+      const fetchCatId = await fetch(`/category/api/test-show-sub-category?catId=${catId}`)
+      const response = await fetchCatId.json()
+      console.log(response.subcategory)
+      let selectVal = ''
+      for (select of response.subcategory) {
+        selectVal += `
+         <option value="${select._id}">${select.sub_category_name}</option>
+        `
+      }
+      subcategory_id.innerHTML = selectVal
+    };
+
+    // category_id.addEventListener('onchange', function(e) {
+    //   const cat_id = category_id = this.value
+    //   console.log(cat_id)
+    // })
+  </script>
+
+
+
+</body>
+
+</html>

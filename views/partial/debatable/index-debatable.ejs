@@ -1,0 +1,64 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-header">
+      <div class="flex-fill">
+        <h3 class="card-subtitle text-muted">Latest project</h3>
+      </div>
+      <table id="datatables-reponsive" class="table table-striped">
+        <thead>
+          <tr>
+            <th>Product </th>
+            <th>Local Title</th>
+            <th>Category </th>
+            <th>Price</th>
+            <th>Product/SKU</th>
+            <th>Status</th>
+            <th>Stock</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(let p of product){ %>
+          <tr>
+            <td><img class="rounded" src="../../../img/avatars/avatar-2.jpg" alt="Placeholder" width="40"> </td>
+            <td class="col-lg-3">
+              <a href=" <%= url%>/product/<%=p.short_title%>?spm=<%= p.product_sellerSKU%>&scm=<%= p._id%>&pvid=<%= p.category_id.category%>" target=" _blank">
+                <%= p.title_name.length>=30? p.title_name.slice(0,35).concat('...'):p.title_name %>
+              </a>
+            </td>
+            <td><%=p.category %> </td>
+            <td><%=p.product_price %> </td>
+            <td> <%=p.product_sellerSKU %> </td>
+            <td><span class="badge bg-success">Active</span></td>
+            <td><%=p.product_quantity %> </td>
+            <td><span><%=p.date%> </span>, <%=p.time %></td>
+            <td>
+              <ul class="navbar-nav navbar-align-middle d-block w-100 ">
+                <li class="nav-item dropdown ">
+                  <button class="form-control " href="#" id="languageDropdown" data-bs-toggle="dropdown">
+                    Action
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-end p-10" aria-labelledby="">
+                    <span class="dropdown-item ">
+                      <button class="btn btn-outline-success d-block w-100  mb-2" value="<%= p._id%>">Active</button>
+                      <button class="btn btn-outline-warning d-block w-100 mb-2">Pending</button>
+                      <button class="btn btn-outline-secondary  d-block w-100 mb-2">Inactive</button>
+                      <button class="btn btn-outline-info  d-block w-100 mb-2">Out Of Stock</button>
+                      <button class="btn btn-outline-danger  d-block w-100 mb-2">Suspended</button>
+                      <button class="btn btn-outline-danger  d-block w-100">Delete</button>
+                    </span>
+                  </div>
+                </li>
+              </ul>
+              <button class="form-control mb-1 ">Edit</button>
+            </td>
+          </tr>
+          <% } %>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

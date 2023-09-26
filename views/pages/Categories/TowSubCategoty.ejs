@@ -1,0 +1,193 @@
+<%- include('../../partial/header/header-doc-title.ejs') %>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <%- include('../../partial/left-sidebar/left-sidebar.ejs') %>
+    </nav>
+    <div class="main">
+      <%- include('../../partial/top-header/top-header.ejs') %>
+
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-3">Sub Categories</h1>
+          <div class="row ">
+            <div class="col-12 col-xl-12">
+              <div class="card">
+
+                <div class="card-header">
+                  <h5 class="card-title">Sub Category Two
+
+
+                    <a href="/category/sub-category">
+                      <button class="btn btn-sm btn-primary rounded">
+                        <i class="align-middle" data-feather="plus"></i>Sub Category
+                      </button>
+                    </a>
+                  </h5>
+                  <h6 class="card-subtitle text-muted">Sub Category Two name and date.</h6>
+                </div>
+
+                <div class="card-body">
+                  <form id="formId">
+                    <div class="row">
+
+                      <div class="mb-3  col-md-6">
+                        <label class="form-label">Main Category Id <span class="text-danger">*</span></label>
+                        <select class="form-control select2" id="category_id" data-toggle="select2" name="category_id">
+                          <option hidden value="">Please select category</option>
+                          <% for(catId of category){ %>
+                          <option value=<%=catId._id%>><%=catId.category%> </option>
+                          <% } %>
+                        </select>
+                        <span class="text-danger" id="error3"></span>
+                      </div>
+                      <div class="mb-3  col-md-6">
+                        <label class="form-label">Sub Category Id <span class="text-danger">*</span></label>
+                        <select class="form-control select2" id="subcategory_id" data-toggle="select2" name="subcategory_id">
+                          <option hidden value="">Please select category</option>
+
+                        </select>
+                        <span class="text-danger" id="error4"></span>
+                      </div>
+                      <div class="mb-3  col-md-6">
+                        <label class="form-label">Sub Category Two<span class="text-danger">*</span></label>
+                        <input id="category" type="text" name="towsubcategory_name" class="form-control" placeholder="New sub category">
+                        <span class="text-danger" id="error"></span>
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <label class="form-label">Icon <span class="text-danger">*</span></label>
+                        <input type="file" id="iconId" name="icon" class="form-control" placeholder="New category">
+                        <span class="text-danger" id="error2"></span>
+                      </div>
+                    </div>
+                    <button type="submit" class="btn btn-success">Create Sub Category </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-12 col-xl-12  ">
+              <div class="card">
+
+                <div class="card-body">
+                  <table id="datatables-reponsive" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#Id</th>
+                        <th>Sub Category Two</th>
+                        <th>#Category</th>
+                        <th>#SubCategory</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% for( let c of twosubCategorys){ %>
+                      <tr>
+                        <td><%= c._id%></td>
+                        <td><%= c.towsubcategory_name%></td>
+                        <td>/<%= c.category0.category_copy%></td>
+                        <td>/<%= c.subcategory1.subcategory_copy%></td>
+                        <td><button class="btn btn-info rounded-pill"><i class="align-middle" data-feather="edit"></i></button>
+                          <button class="btn btn-danger rounded-pill"><i class="align-middle" data-feather="delete"></i> </button>
+                        </td>
+                        <% } %>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('../../partial/footer/footer.ejs') %>
+    </div>
+  </div>
+
+  <script src="../../../js/app.js"></script>
+
+  <script src="../../script/index-script.js"> </script>
+
+  <script>
+    const _ = (id) => document.getElementById(id)
+    const newForm = document.forms["formId"];
+
+    _("formId").addEventListener('submit', async function(e) {
+      e.preventDefault()
+
+      function showError() {
+        if (_("category").value === '') {
+          _("error").innerHTML = "Sub Category Two is required."
+        } else {
+          _("error").innerHTML = ""
+        }
+
+        if (_("iconId").value === '') {
+          _("error2").innerHTML = "Icon is required."
+        } else {
+          _("error2").innerHTML = ""
+        }
+
+        if (_("category_id").value === '') {
+          _("error3").innerHTML = "Category Id is required."
+        } else {
+          _("error3").innerHTML = ""
+        }
+
+        if (_("subcategory_id").value === '') {
+          _("error4").innerHTML = "Sub Category Id is required."
+        } else {
+          _("error4").innerHTML = ""
+        }
+      }
+
+      showError()
+      const settings = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // your expected POST request payload goes here
+          towsubcategory_name: newForm["towsubcategory_name"].value,
+          icon: newForm["icon"].value,
+          category_id: newForm["category_id"].value,
+          subcategory_id: newForm["subcategory_id"].value,
+
+        }),
+      };
+      const fetchResponse = await fetch('/create/category/two-sub-category', settings)
+      const response = await fetchResponse.json()
+      console.log(response)
+
+      if (response.status === 201) {
+        window.location.reload();
+      }
+      if (response.error.status === 422) {
+        error.innerHTML = "Sub Category Two already exits."
+      }
+    })
+
+    const formId = document.getElementById('formId')
+    const category_id = document.querySelector('#category_id')
+    const subcategory_id = document.querySelector('#subcategory_id')
+
+    category_id.onchange = async function(e) {
+      const catId = e.target.value
+      console.log(catId)
+      const fetchCatId = await fetch(`/category/api/sub-category?catId=${catId}`)
+      const response = await fetchCatId.json()
+      console.log(response.subcategory)
+      let selectVal = ''
+      for (select of response.subcategory) {
+        selectVal += `<option value="${select._id}">${select.subcategory_name}</option>`
+      }
+      subcategory_id.innerHTML = selectVal
+    };
+  </script>
+
+</body>
+
+</html>

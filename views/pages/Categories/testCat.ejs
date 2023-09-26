@@ -1,0 +1,157 @@
+<%- include('../../partial/header/header-doc-title.ejs') %>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <%- include('../../partial/left-sidebar/left-sidebar.ejs') %>
+    </nav>
+    <div class="main">
+      <%- include('../../partial/top-header/top-header.ejs') %>
+
+      <main class="content">
+        <div class="container-fluid p-0">
+
+          <h1 class="h3 mb-3">Category</h1>
+
+          <div class="row ">
+            <div class="col-12 col-xl-6">
+              <div class="card ">
+                <div class="card-header">
+                  <h5 class="card-title ml-10">Category List
+                    <a href="/category/sub-category">
+                      <button class="btn btn-sm btn-primary rounded">
+                        <i class="align-middle" data-feather="plus"></i> Sub Category
+                      </button>
+                    </a>
+                  </h5>
+                  <h6 class="card-subtitle text-muted">Category name and date.</h6>
+                </div>
+                <div class="card-body">
+                  <table id="datatables-dashboard-projects" class="table table-striped my-0">
+
+                    <thead>
+
+                      <tr>
+                        <th class="d-none d-xl-table-cell">#Id</th>
+                        <th class="d-none d-xl-table-cell">Category</th>
+                        <th class="d-none d-xl-table-cell">Time</th>
+                      </tr>
+
+                    </thead>
+                    <tbody>
+
+                      <% for(let c of CategoryList){ %>
+                      <tr>
+                        <td class="d-none d-xl-table-cell"><%= c._id %> </td>
+                        <td class="d-none d-xl-table-cell"><%= c.category %> </td>
+                        <td class="d-none d-xl-table-cell"><% c.category_copy %> </td>
+
+                      </tr>
+                      <% } %>
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-xl-6">
+              <div class="card">
+                <div class="card-header">
+                  <h5 class="card-title">Category</h5>
+                  <h6 class="card-subtitle text-muted">Create your category</h6>
+                </div>
+
+                <div class="card-body">
+
+                  <form id="formId">
+
+                    <div class="row">
+                      <div class="mb-3 col-md-6">
+                        <label class="form-label">Category <span class="text-danger">*</span></label>
+                        <input type="text" id="categoryId" name="category" class="form-control" placeholder="New category">
+                        <span class="text-danger" id="error"></span>
+                      </div>
+                      <div class="mb-3 col-md-6">
+                        <label class="form-label">Icon <span class="text-danger">*</span></label>
+                        <input type="file" id="iconId" name="icon" class="form-control" placeholder="New category">
+                        <span class="text-danger" id="error2"></span>
+                      </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success" id="updateId">Create Category</button>
+                  </form>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <%- include('../../partial/footer/footer.ejs') %>
+    </div>
+  </div>
+
+  <script src="../../../js/app.js"></script>
+
+  <script src="../../script/index-script.js"> </script>
+  <script>
+    function _(id) {
+      return document.getElementById(id)
+    }
+    const formId = document.querySelector("#formId")
+    // const categoryId = document.querySelector("#categoryId")
+    // const iconId = document.querySelector("#iconId")
+    // const error = document.querySelector("#error")
+    // const error2 = document.querySelector("#error2")
+    // const updateId = document.querySelector("#updateId")
+    // const deleteId = document.querySelector("#deleteId")
+    const newForm = document.forms["formId"];
+
+    formId.addEventListener('submit', async function(e) {
+      e.preventDefault()
+
+      if (_('categoryId').value === '') {
+        _("error").innerHTML = "Category is required."
+      } else {
+        _("error").innerHTML = ""
+      }
+      //   if (_("iconId").value === '') {
+      //     _("error2").innerHTML = "Icon is required."
+      //   } else {
+      //     _("error2").innerHTML = ""
+      //   }
+
+
+      const settings = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // your expected POST request payload goes here
+          category: newForm["category"].value,
+          icon: newForm["icon"].value,
+          copy_category: newForm["category"].value,
+
+        }),
+      };
+      const fetchResponse = await fetch('/category/api/test-cat', settings)
+      const response = await fetchResponse.json()
+      if (response.success && response.status === 201) {
+        newForm["category"].value = ""
+        error.innerHTML = "Category Submit Successfully"
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000)
+      }
+      if (response.error.status === 422) {
+        error.innerHTML = "Category already exits."
+      }
+    })
+  </script>
+</body>
+
+</html>

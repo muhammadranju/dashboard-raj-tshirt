@@ -1,0 +1,549 @@
+<%- include('../../partial/header/header-doc-title.ejs') %>
+
+<body data-theme="light" data-layout="fluid" data-sidebar-position="left" data-sidebar-behavior="sticky">
+  <div class="wrapper">
+    <nav id="sidebar" class="sidebar">
+      <%- include('../../partial/left-sidebar/left-sidebar.ejs') %>
+    </nav>
+    <div class="main">
+      <%- include('../../partial/top-header/top-header.ejs') %>
+
+      <main class="content">
+        <div class="container-fluid p-0">
+          <h1 class="h3 mb-3">Basic Information</h1>
+          <div class="row">
+            <div class="col-12 col-xl-12">
+
+
+
+              <form id="productForm" enctype="multipart/form-data">
+                <div class="card-body card">
+                  <div id="main_image">
+                    <!-- <div class="image_container"></div> -->
+                  </div>
+                  <div class="card-header">
+                    <h4 class="card-subtitle text-muted font-weight-bold">Product Images <span class="text-danger">*</span></h4>
+                    <!-- <input type="file" multiple class="form-control " accept="image/gif, image/jpeg, image/png" onchange="image_select()"> -->
+                    <input type="file" multiple class="form-control " name=" image" id="image" accept="image/gif, image/jpeg, image/png" onchange="image_select()">
+                    <button class="btn btn-primary my-2" type="button" onclick="document.getElementById('image').click()">Select Image</button>
+                    <small>This is the main image of your product page. Multiple images can be uploaded at once. Maximum 8 images. Size between 330x330 and 5000x5000 px. Max file size: 3 MB. Obscene image is strictly prohibited.</small>
+                    <br>
+                    <span class="text-danger" id="error13"></span>
+                  </div>
+                  <div class="mb-3 row">
+                    <label class="col-form-label col-sm-2 font-weight-bold">Product Name <span class="text-danger">*</span></label>
+                    <div class="col-sm-10 ">
+                      <input type="text" class="form-control" name="title_name" id="title_name" placeholder="Ex. Nikon Coolpix A300 Digital Camera">
+                      <span class="text-danger" id="error1"></span>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold" for="">Category<span class="text-danger">*</span></label>
+                      <select class="form-control select2" name="category" id="category">
+                        <option hidden value="">Please select category</option>
+                        <%  for(let c of catalog){ %>
+                        <option value=<%= c._id%>><%= c.category%></option>
+                        <% } %>
+                      </select>
+                      <span class="text-danger" id="error2"></span>
+                    </div>
+                    <div class="mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold" for="">Sub Category <span class="text-danger">*</span></label>
+                      <select class="form-control select2" name="sub_category" id="sub_category">
+                        <option value="">Please select sub category</option>
+                      </select>
+                      <span class="text-danger" id="error3"></span>
+                    </div>
+
+                    <div class="mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold" for="">Sub Category Two <span class="text-danger">*</span></label>
+                      <select class="form-control select2" name="sub_categorytwo" id="sub_categorytwo">
+                        <option value="">Please select sub category</option>
+                      </select>
+                      <span class="text-danger" id="error20"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body card">
+                  <div class="card-header">
+                    <h4 class="card-subtitle text-muted font-weight-bold">Product Attributes <span class="text-danger">*</span></h4>
+                    <small>Boost your item's searchability by filling-up the Key Product Information marked with KEY. The more you fill-up, the easier for buyers to find your product.</small>
+                  </div>
+
+                  <div class="row">
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold" for="">Brand <span class="text-danger">*</span></label>
+                      <select class="form-select select2" name="brand_name" id="brand_name">
+                        <option hidden value="">Please select brand</option>
+                        <option value="No Brand">No Brand</option>
+                      </select>
+                      <span class="text-danger" id="error4"></span>
+                    </div>
+
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold">Color Family <span class="text-danger">*</span></label>
+                      <select class="form-select select2" name="color_name" id="color_name">
+                        <option hidden value="">Please select color</option>
+                        <option value="No Color">No Color</option>
+                      </select>
+                      <span class="text-danger" id="error5"></span>
+                    </div>
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Size <span class="text-danger">*</span></label>
+                      <select class="form-select select2" name="product_size" id="product_size">
+                        <option hidden value="">Please select size</option>
+                        <option value="No Size">No Size</option>
+                      </select>
+                      <span class="text-danger" id="error6"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body card">
+                  <div class="card-header">
+                    <h4 class="card-subtitle text-muted font-weight-bold">Product Detailed Description <span class="text-danger">*</span></h4>
+                    <small>Boost your item's searchability by filling-up the Key Product Information marked with KEY. The more you fill-up, the easier for buyers to find your product.</small>
+                  </div>
+
+                  <div class="card-body ">
+                    <label class="col-form-label font-weight-bold " for="">Long Description <span class="text-danger">*</span></label>
+                    <textarea name="ckeditorId" class="form-control" id="ckeditorId" cols="30" rows="5"></textarea>
+                    <span class="text-danger" id="error7"></span>
+                  </div>
+
+                  <div class="row">
+                    <div class="mb-3 row">
+                      <label class="col-form-label col-md-2 font-weight-bold">Product Tags <span class="text-danger">*</span></label>
+                      <div class="mb-3 col-md-10">
+                        <input type="text" class="form-control" name="product_tags" id="product_tags" placeholder="Ex. smartphone, man, samsung, t-shirt">
+                        <span class="text-danger" id="error8"></span>
+                      </div>
+                    </div>
+                    <label class="col-form-label col-md-2 font-weight-bold">What's in the box <span class="text-danger">*</span></label>
+                    <div class="mb-3 col-md-10">
+                      <input type="text" class="form-control" name="product_box" id="product_box" placeholder="Ex. t-shirt phone, camera or something else ">
+                      <span class="text-danger" id="error9"></span>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="card-body card">
+                  <div class="card-header">
+                    <h4 class="card-subtitle text-muted font-weight-bold">Price & Stock <span class="text-danger">*</span></h4>
+                    <small>Tip: Add variants when the product have different versions, such as color and size.</small>
+                  </div>
+                  <div class="row">
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Price <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" name="product_price" id="product_price" placeholder="Product Price">
+                        <span class="text-danger" id="error10"></span>
+                      </div>
+                    </div>
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Special Price
+                        <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" name="special_price" id="special_price" placeholder="Special Price">
+                        <span class="text-danger" id="error11"></span>
+                      </div>
+                    </div>
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Quantity
+                        <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" maxlength="15" name="product_quantity" id="product_quantity" placeholder="Product Quantity">
+                        <span class="text-danger" id="error12"></span>
+                      </div>
+                    </div>
+                    <!-- <div class="card-body mb-3 col-md-3">
+                        <label class="col-form-label font-weight-bold ">SellerSKU
+                          <span class="text-danger">*</span></label>
+                        <div class="form-check form-switch">
+                          <input class="form-control" type="number" name="product_sellerSKU" id="product_sellerSKU" placeholder="Seller SKU 130 character only">
+                          <span class="text-danger" id="error13"></span>
+                        </div>
+                      </div> -->
+                  </div>
+                </div>
+                <div class="card-body card">
+                  <div class="card-header">
+                    <h4 class="card-subtitle text-muted font-weight-bold">Service & Delivery <span class="text-danger">*</span></h4>
+                    <small>Tip: Add variants when the product have different versions, such as color and size.</small>
+                  </div>
+                  <div class="row">
+                    <div class="card-body mb-3 col-md-6">
+                      <label class="col-form-label font-weight-bold ">Package Weight (kg) <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" name="package_weight" id="package_weight" placeholder="Ex. 1kg, 2kg, 3kg, 4kg or 5kg ">
+                        <span class="text-danger" id="error14"></span>
+                      </div>
+                    </div>
+                    <div class="card-body mb-3 col-md-6">
+                      <label class="col-form-label col-sm-2 font-weight-bold">Delivery Times <span class="text-danger">*</span></label>
+
+                      <!-- <input class="form-control" type="text"  id="flexSwitchCheckDefault"> -->
+                      <select name="delivery_times" class="form-control select2" na id="delivery_times">
+                        <option value="">Please Select Delivery Time</option>
+                        <option value="1 - 3 day(s)">1 - 3 day(s)</option>
+                        <option value="3 - 5 day(s)">3 - 5 day(s)</option>
+                        <option value="5 - 7 day(s)">5 - 7 day(s)</option>
+                        <option value="7 - 10 day(s)">7 - 10 day(s)</option>
+                        <option value="10 - 15 day(s)">10 - 15 day(s)</option>
+                        <option value="15 - 30 day(s)">15 - 30 day(s)</option>
+                      </select>
+                      <span class="text-danger" id="error15"></span>
+
+                    </div>
+                    <div class="card-header">
+                      <h4 class="card-subtitle text-muted font-weight-bold">Package Dimensions (cm) <span class="text-danger">*</span></h4>
+                      <!-- <h4 class="card-subtitle text-muted font-weight-bold">Service & Delivery <span class="text-danger">*</span></h4> -->
+                      <small>Tip: You must be add your product package dimensions like length, width, height.</small>
+                    </div>
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Length (CM) <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" name="length_dim" id="length_dim" placeholder="Length (cm) ">
+                        <span class="text-danger" id="error16"></span>
+                      </div>
+                    </div>
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Width (CM) <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" name="width_dim" id="width_dim" placeholder="Width (cm)">
+                        <span class="text-danger" id="error17"></span>
+                      </div>
+                    </div>
+                    <div class="card-body mb-3 col-md-4">
+                      <label class="col-form-label font-weight-bold ">Height (CM) <span class="text-danger">*</span></label>
+                      <div class="form-check form-switch">
+                        <input class="form-control" type="number" name="height_dim" id="height_dim" placeholder="Height (cm)">
+                        <span class="text-danger" id="error18"></span>
+                      </div>
+                    </div>
+                  </div>
+                  <input type="submit" name="" value="Submit" class="btn btn-primary btn-shadow d-block w-100 mb-3">
+                </div>
+
+            </div>
+            <div class="mb-3 row">
+              <div class="">
+                <!-- <input type="submit" class="btn btn-primary auto" value="Submit"> -->
+                <!-- <input type="submit" name="" value="Submit" class="btn btn-primary btn-shadow d-block w-100 mb-3"> -->
+                <!-- <input type="submit" class="btn btn-primary  " id="save_draft" value="Save Draft"> -->
+              </div>
+            </div>
+            </form>
+          </div>
+
+        </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </main>
+
+
+  <%- include('../../partial/footer/footer.ejs') %>
+  </div>
+  </div>
+
+
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../../../ckeditor5/ckeditor.js"></script>
+  <!-- <script src="../../js/sweetalert2.js"></script> -->
+  <script src="../../../js/app.js"></script>
+  <script src="../../script/index-script.js"> </script>
+  <script>
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      customClass: {},
+
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer);
+        toast.addEventListener('mouseleave', Swal.resumeTimer);
+      }
+    });
+    ClassicEditor
+      .create(document.querySelector('#ckeditorId'), {})
+      .catch(error => {
+        console.log(error);
+      });
+
+    function _(id) {
+      return document.getElementById(id)
+    }
+
+    let images = []
+
+    function image_select() {
+      let image = document.getElementById("image").files;
+      console.log(image)
+      for (let i = 0; i
+
+        <
+        image.length; i++) {
+        images.push({
+          "name": image[i].name,
+          "url": URL.createObjectURL(image[i]),
+          "file": image[i]
+        })
+      }
+      document.getElementById('productForm').reset();
+      document.getElementById('main_image').innerHTML = image_show();
+
+    };
+
+
+    function image_show() {
+      let image = ''
+      images.forEach((i) => {
+        image += `
+          <img class="rounded shadow my-2" id="prev_image" src="${i.url}" width="100px" alt="">
+          <span class="position" type="button" onclick="delete_image(${images.indexOf(i)})">
+            <i class="bi bi-x-circle-fill text-danger"></i>
+          </span>
+          `
+      })
+
+      return image;
+
+    }
+
+    function delete_image(e) {
+      images.splice(e, 1)
+      document.getElementById('main_image').innerHTML = image_show()
+    }
+
+    function categoryChange() {
+      _("category").onchange = async function(e) {
+        const catId = e.target.value
+        // console.log(catId)
+        const fetchCatId = await fetch(`/category/api/sub-category?catId=${catId}`)
+        const response = await fetchCatId.json()
+        // console.log(response.subcategory)
+        let selectVal = ''
+
+        for (select of response.subcategory) {
+          selectVal +=
+            `<option value=""></option>
+              <option value="${select._id }">${select.subcategory_name}</option>
+              `
+        }
+        _("sub_categorytwo").innerHTML = ""
+        // console.log(response)
+        _("sub_category").innerHTML = selectVal
+      };
+
+      _("sub_category").onchange = async function(e) {
+        const catId = e.target.value
+        // console.log(catId)
+        const fetchCatId = await fetch(`/category/api/sub-category-two?catId=${catId}`)
+        const response = await fetchCatId.json()
+        // console.log(response.subcategorytwo)
+        let selectVal = ''
+        for (select of response.subcategorytwo) {
+          selectVal +=
+            `<option value=""></option>
+               <option value="${select._id}">${select.towsubcategory_name}</option>
+               `
+        }
+        // console.log(response)
+        _("sub_categorytwo").innerHTML = selectVal
+      };
+    }
+    categoryChange()
+    const productForm = document.querySelector('#productForm')
+    const newForm = document.forms["productForm"]
+
+    function showErrors() {
+
+      if (_("title_name").value === '') {
+        _('error1').innerHTML = "Product Title is required."
+      } else {
+        _('error1').innerHTML = ""
+      }
+
+      if (_("category").value === '') {
+        _('error2').innerHTML = "Category is required."
+      } else {
+        _('error2').innerHTML = ""
+      }
+
+      if (_("sub_category").value === '') {
+        _('error3').innerHTML = "Sub Category is required."
+      } else {
+        _('error3').innerHTML = ""
+      }
+
+      if (_("sub_categorytwo").value === '') {
+        _('error20').innerHTML = "Sub Category Two is required."
+      } else {
+        _('error20').innerHTML = ""
+      }
+
+      if (_("brand_name").value === '') {
+        _('error4').innerHTML = "Brand is required."
+      } else {
+        _('error4').innerHTML = ""
+      }
+
+      if (_("color_name").value === '') {
+        _('error5').innerHTML = "Color is required."
+      } else {
+        _('error5').innerHTML = ""
+      }
+
+      if (_("product_size").value === '') {
+        _('error6').innerHTML = "Product Size is required."
+      } else {
+        _('error6').innerHTML = ""
+      }
+
+
+      if (_("ckeditorId").value === '') {
+        _('error7').innerHTML = "Description is required."
+      } else {
+        _('error7').innerHTML = ""
+      }
+
+      if (_("product_tags").value === '') {
+        _('error8').innerHTML = "Product Tags is required."
+      } else {
+        _('error8').innerHTML = ""
+      }
+
+      if (_('product_box').value === '') {
+        _('error9').innerHTML = "Product Price is required."
+      } else {
+        _('error9').innerHTML = ""
+      }
+
+      if (_('product_price').value === '') {
+        _('error10').innerHTML = "Product Price is required."
+      } else {
+        _('error10').innerHTML = ""
+      }
+
+      if (_('special_price').value === '') {
+        _('error11').innerHTML = "Special Price is required."
+      } else {
+        _('error11').innerHTML = ""
+      }
+
+      if (_('product_quantity').value === '') {
+        _('error12').innerHTML = "Product Quantity is required."
+      } else {
+        _('error12').innerHTML = ""
+      }
+
+      if (_('image').value === '') {
+        _('error13').innerHTML = "Product image is required."
+      } else {
+        _('error13').innerHTML = ""
+      }
+
+      if (_('package_weight').value === '') {
+        _('error14').innerHTML = "Package Weight is required."
+      } else {
+        _('error14').innerHTML = ""
+      }
+
+      if (_('delivery_times').value === '') {
+        _('error15').innerHTML = "Delivery Times is required."
+      } else {
+        _('error15').innerHTML = ""
+      }
+
+      if (_('length_dim') && _('length_dim').value === '') {
+        _('error16').innerHTML = "Length Dimensions is required."
+      } else {
+        _('error16').innerHTML = ""
+      }
+
+      if (_('width_dim') && _('width_dim').value === '') {
+        _('error17').innerHTML = "Width Dimensions is required."
+      } else {
+        _('error17').innerHTML = ""
+      }
+
+      if (_('height_dim') && _('height_dim').value === '') {
+        _('error18').innerHTML = "Height Dimensions is required."
+
+      } else {
+        _('error18').innerHTML = ""
+      }
+
+    }
+    productForm.addEventListener('submit', async function(event) {
+      event.preventDefault();
+      showErrors()
+      const settings = {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+
+        body: JSON.stringify({
+          // your expected POST request payload goes here
+          //  sub_category_name: newForm["sub_category_name"].value,
+          title_name: newForm["title_name"].value,
+          image: newForm["image"].value,
+          category: newForm["category"].value,
+          sub_category: newForm["sub_category"].value,
+          sub_categorytwo: newForm["sub_categorytwo"].value,
+          brand_name: newForm["brand_name"].value,
+          color_name: newForm["color_name"].value,
+          product_size: newForm["product_size"].value,
+          product_tags: newForm["product_tags"].value,
+          product_box: newForm["product_box"].value,
+          product_price: newForm["product_price"].value,
+          special_price: newForm["special_price"].value,
+          product_quantity: newForm["product_quantity"].value,
+          // product_sellerSKU: newForm["product_sellerSKU"].value,
+          package_weight: newForm["package_weight"].value,
+          delivery_times: newForm["delivery_times"].value,
+          length_dim: newForm["length_dim"].value,
+          width_dim: newForm["width_dim"].value,
+          height_dim: newForm["height_dim"].value,
+          description: newForm["ckeditorId"].value,
+        }),
+        send: swal.fire({
+          html: ` <img src="../../../img/photos/gifs.gif" width="100px" height="100px">`,
+          // height: "10px",
+          width: "158px",
+          allowOutsideClick: false,
+          backdrop: false,
+          showConfirmButton: false,
+          heightAuto: false,
+        }),
+      };
+
+      const fetchData = await fetch('/product/upload/post', settings)
+      const responseData = await fetchData.json()
+      console.log(responseData)
+      if (responseData.status === 201) {
+        window.location.reload();
+      }
+      if (responseData.error.status === 400) {
+        Toast.fire({
+          icon: "error",
+          title: "Product submit failed please try again.",
+          position: 'top-end',
+          width: "400px",
+          heightAuto: false,
+        });
+      }
+
+    });
+  </script>
+</body>
+
+</html>

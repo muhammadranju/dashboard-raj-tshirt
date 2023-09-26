@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title mb-0">Public info</h5>
+  </div>
+  <div class="card-body">
+    <form action="/user/setting/submit" method="POST">
+      <div class="row">
+        <div class="col-md-8">
+          <div class="mb-3">
+            <label for="inputUsername" class="form-label">Username</label>
+            <input type="text" class="form-control" disabled id="username" value="<%= user.username %>" placeholder="Username">
+          </div>
+          <div class="mb-3">
+            <label for="inputUsername" class="form-label">Biography</label>
+            <textarea rows="2" class="form-control" id="bio" name="bio" placeholder="Tell something about yourself"><%= userAddress.bio?userAddress.bio:"" %></textarea>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="text-center">
+            <img alt="Chris Wood" src="<%= user.photo?user.photo:"" %>" class="rounded-circle img-responsive mt-2" width="128" height="128" />
+            <div class="mt-2">
+              <span class="btn btn-primary"><i class="fas fa-upload"></i> Upload</span>
+            </div>
+            <small>For best results, use an image at least 128px by 128px in .jpg format</small>
+          </div>
+        </div>
+      </div>
+
+  </div>
+</div>

@@ -1,0 +1,12 @@
+const express = require("express");
+const path = require("path");
+const app = express();
+require("../config/db/database");
+const { notFoundError, serverError } = require("../error/errorHandel");
+app.set("view engine", "ejs");
+app.use(express.static("public"));
+app.use(require("./middlewares"));
+app.use(require("../routes/prefixIndex"));
+app.use(notFoundError);
+app.use(serverError);
+module.exports = app;
