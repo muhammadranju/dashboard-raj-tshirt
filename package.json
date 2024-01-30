@@ -6,7 +6,8 @@
   "author": "Muhammad Ranju",
   "license": "LLC",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "node index.js",
+        "dev": "nodemon index.js",
     "prod": "node index.js"
   },
   "dependencies": {
